@@ -85,9 +85,14 @@ public class LancamentoResource {
 	}
 
 	@PutMapping("/{codigo}")
-	public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento lancamento){
-		Lancamento lancamentoSalvo = lancamentoService.atualizar(codigo, lancamento);
-		return ResponseEntity.ok(lancamentoSalvo);
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_LANCAMENTO')")
+	public ResponseEntity<Lancamento> atualizar(@PathVariable Long codigo, @Valid @RequestBody Lancamento lancamento) {
+		try {
+			Lancamento lancamentoSalvo = lancamentoService.atualizar(codigo, lancamento);
+			return ResponseEntity.ok(lancamentoSalvo);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@ExceptionHandler({ PessoaInexistenteOuInativaException.class })
