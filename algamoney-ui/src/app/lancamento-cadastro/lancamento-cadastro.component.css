@@ -1,0 +1,74 @@
+.container-dates{
+  width: 50%;
+}
+
+.space-between {
+  margin-right: 5%;
+}
+
+.mat-form-field.input-description {
+  width: 450px;
+}
+
+.mat-form-field.select-categoria {
+  width: 450px;
+}
+
+.mat-form-field.select-pessoa {
+  width: 450px;
+}
+
+.mat-form-field.txt-area-obs {
+  width: 450px;
+}
+
+.btn-salvar {
+  background-color: #3f51b5;
+  margin-right: 2%;
+}
+
+.btn-novo {
+  background-color: #b0bec5;
+  color: #000000;
+  margin-right: 2%;
+}
+
+.voltar {
+  color: #0090ff;
+  font-size: 14px;
+ }
+
+.voltar:hover {
+  color: #006dd7;
+}
+
+.mat-button-toggle-group {
+  margin-bottom: 3%;
+}
+
+.mat-button-toggle {
+  background-color: #4b4b4b;
+  color: #ffffff;
+}
+
+.mat-button-toggle-checked {
+  background-color: #3f51b5;
+  color: #ffffff;
+}
+
+.example-form {
+  margin-top: 4%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.col-small {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+}
+
+.col-medium {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+}

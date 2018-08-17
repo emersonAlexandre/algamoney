@@ -1,0 +1,72 @@
+<div class="container-body">
+  <h1>Nova Pessoa</h1>
+  <form class="example-form" >
+      <div class="row col">
+        <div class="grid-item">
+          <label class="{{formControl.hasError('required') && formControl.touched ? 'label-error' : 'label'}}">Nome:</label>
+          <mat-form-field>
+            <input matInput [formControl]="formControl" specialCharacters="[ '´', '^', '~', '`' ]" mask="S*">
+            <mat-error *ngIf="formControl.hasError('required')">
+              Nome is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row col">
+        <div class="grid-item">
+          <label>Logradouro:</label>
+          <mat-form-field >
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="grid-item">
+          <label>Número:</label>
+          <mat-form-field >
+            <input matInput mask="0*">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row col">
+        <div class="grid-item">
+          <label>Complemento:</label>
+          <mat-form-field >
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="grid-item">
+          <label>Bairro:</label>
+          <mat-form-field >
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="grid-item">
+          <label>Cep:</label>
+          <mat-form-field >
+            <input matInput mask="00000-000">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row col">
+        <div class="grid-item">
+          <label>Cidade:</label>
+          <mat-form-field >
+            <input matInput>
+          </mat-form-field>
+        </div>
+        <div class="grid-item">
+          <label>Estado:</label>
+          <mat-form-field >
+            <input matInput>
+          </mat-form-field>
+        </div>
+      </div>
+
+    <div>
+      <button mat-button class="btn-voltar" routerLink="/pessoas-page">Voltar</button>
+      <button mat-button class="btn-salvar">Salvar</button>
+    </div>
+
+  </form>
+</div>

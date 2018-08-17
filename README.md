@@ -1,1 +1,1 @@
-# algamoney
+# Algamoney.

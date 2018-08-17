@@ -1,0 +1,81 @@
+<div class="container-body">
+  <h1>Novo Lançamento</h1>
+  <form class="example-form">
+    <mat-button-toggle-group class="form-group" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="RECEITA" #receita (click)="myFunc(receita)" [checked]="true" >Receita</mat-button-toggle>
+      <mat-button-toggle value="DESPESA" #despesa (click)="myFunc(despesa)">Despesa</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="row col-small">
+      <div class="grid-item">
+          <label>Vencimento:</label>
+          <app-datepicker></app-datepicker>
+      </div>
+      <div class="grid-item">
+        <label>{{tipo === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}:</label>
+        <app-datepicker></app-datepicker>
+      </div>
+    </div>
+    <div class="row col">
+      <div class="grid-item">
+        <label>Descrição:</label>
+        <mat-form-field class="input-description">
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="grid-item">
+        <div class="row col-small">
+          <div class="grid-item">
+            <label>Valor:</label>
+            <mat-form-field>
+              <input matInput currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }">
+              <span matPrefix>R$&nbsp;</span>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row col">
+      <div class="grid-item">
+        <div class="row col-medium">
+          <div class="grid-item">
+            <label>Categoria:</label>
+            <mat-form-field class="select-categoria">
+              <mat-select value="">
+                <mat-option value="">Selecione</mat-option>
+                <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">
+                  {{categoria.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="grid-item">
+            <label>Pessoa:</label>
+            <mat-form-field class="select-pessoa">
+              <mat-select value="">
+                <mat-option value="">Selecione</mat-option>
+                <mat-option *ngFor="let pessoa of pessoas" [value]="pessoa.value">
+                  {{pessoa.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label>Observação:</label>
+    </div>
+
+    <mat-form-field class="txt-area-obs">
+      <textarea matInput></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-button class="btn-salvar">Salvar</button>
+      <button mat-button class="btn-novo">Novo</button>
+      <a routerLink="/lancamentos-page" class="voltar">Voltar para a pesquisa</a>
+    </div>
+
+  </form>
+</div>

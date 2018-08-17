@@ -1,0 +1,35 @@
+.btn-salvar {
+  background-color: #3f51b5;
+}
+
+.btn-voltar {
+  background-color: #b0bec5;
+  color: #000000;
+  margin-right: 2%;
+}
+
+.mat-button-toggle-group {
+  margin-bottom: 3%;
+}
+
+.mat-button-toggle {
+  background-color: #4b4b4b;
+  color: #ffffff;
+}
+
+.mat-button-toggle-checked {
+  background-color: #3f51b5;
+  color: #ffffff;
+}
+
+.example-form{
+  margin-top: 4%;
+}
+
+.label-error {
+  color: #f44336;
+}
+
+.label {
+  color: #ffffff;
+}
