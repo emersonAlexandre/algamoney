@@ -34,6 +34,7 @@ export class LancamentoCadastroComponent {
 
   myFunc(tipoOpt) {
     this.tipo = tipoOpt.value;
+    console.log(this.tipo);
   }
 
 }

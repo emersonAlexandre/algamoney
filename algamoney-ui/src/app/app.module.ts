@@ -36,6 +36,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgxMaskModule } from 'ngx-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   {path: 'lancamentos-page', component: LancamentosPageComponent},
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     PessoasPageComponent,
     DatepickerComponent,
     LancamentoCadastroComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
