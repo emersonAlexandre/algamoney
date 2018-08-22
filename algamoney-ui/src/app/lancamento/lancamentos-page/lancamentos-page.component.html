@@ -1,0 +1,53 @@
+<div class="container-body">
+  <div>
+    <h1>LANÇAMENTOS</h1>
+  </div>
+  <div>
+    <form class="example-form">
+        <div class="row col">
+          <div class="grid-item">
+            <label>Descrição:</label>
+            <mat-form-field>
+              <input type="text" aria-label="Number" matInput [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="container-half row col-dates">
+    <div class="grid-item">
+      <label>Vencimento:</label>
+      <!--<app-datepicker></app-datepicker>-->
+    </div>
+    <div class="grid-item container-label">
+      <label>Até</label>
+    </div>
+    <div class="grid-item date-ate">
+      <!--<app-datepicker></app-datepicker>-->
+    </div>
+  </div>
+  <div class="clearfix container-btns">
+    <div class="float-left">
+      <button class="btn-search" mat-button matTooltip="Pesquisar lançamento" [matTooltipPosition]="'after'">
+        <mat-icon>search</mat-icon>
+        Pesquisar
+      </button>
+    </div>
+    <div class="float-right">
+      <button class="btn-new float-right" mat-button matTooltip="Cadastrar lançamento" [matTooltipPosition]="'before'"
+              routerLink="/lancamento-cadastro">
+        <mat-icon>add</mat-icon>
+        Novo
+      </button>
+    </div>
+  </div>
+
+  <app-datatable-lancamentos [dataSource]="dataSource" [displayedColumns]="displayedColumns"></app-datatable-lancamentos>
+
+</div>

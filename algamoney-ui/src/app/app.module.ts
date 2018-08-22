@@ -29,14 +29,16 @@ import {
   TooltipPosition, MatButtonToggleModule
 } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
-import { LancamentosPageComponent } from './lancamentos-page/lancamentos-page.component';
-import { PessoasPageComponent } from './pessoas-page/pessoas-page.component';
+import { LancamentosPageComponent } from './lancamento/lancamentos-page/lancamentos-page.component';
+import { PessoasPageComponent } from './pessoa/pessoas-page/pessoas-page.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
-import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentoCadastroComponent } from './lancamento/lancamento-cadastro/lancamento-cadastro.component';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgxMaskModule } from 'ngx-mask';
-import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { PessoaCadastroComponent } from './pessoa/pessoa-cadastro/pessoa-cadastro.component';
 import { MessageComponent } from './message/message.component';
+import {LancamentoModule} from './lancamento/lancamento.module';
+import {PessoaModule} from './pessoa/pessoa.module';
 
 const appRoutes: Routes = [
   {path: 'lancamentos-page', component: LancamentosPageComponent},
@@ -49,29 +51,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     MyNavComponent,
-    LancamentosPageComponent,
-    PessoasPageComponent,
     DatepickerComponent,
-    LancamentoCadastroComponent,
-    PessoaCadastroComponent,
     MessageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatChipsModule,
-    MatAutocompleteModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -79,12 +70,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     ReactiveFormsModule,
     MatGridListModule,
-    MatTooltipModule,
-    MatTabsModule,
-    MatSelectModule,
-    MatButtonToggleModule,
-    CurrencyMaskModule,
-    NgxMaskModule.forRoot()
+    LancamentoModule,
+    PessoaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,40 @@
+<div class="container-body">
+  <div>
+    <h1>Pessoas</h1>
+  </div>
+  <div>
+    <form class="example-form">
+        <div class="row col">
+          <div class="grid-item">
+            <label>Nome:</label>
+            <mat-form-field>
+              <input type="text" aria-label="Number" matInput [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="clearfix container-btns">
+    <div class="float-left">
+      <button class="btn-search" mat-button matTooltip="Pesquisar pessoa" [matTooltipPosition]="'after'">
+        <mat-icon>search</mat-icon>
+        Pesquisar
+      </button>
+    </div>
+    <div class="float-right">
+      <button class="btn-new float-right" mat-button matTooltip="Cadastrar pessoa" [matTooltipPosition]="'before'" routerLink="/pessoa-cadastro">
+        <mat-icon>add</mat-icon>
+        Novo
+      </button>
+    </div>
+  </div>
+
+  <app-datatable-pessoas [dataSource]="dataSource" [displayedColumns]="displayedColumns"></app-datatable-pessoas>
+
+</div>

@@ -6,8 +6,8 @@
   padding: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+html, body { height: 100%;}
+body { margin: 0; font-family: 'Roboto', sans-serif;}
 
 .mat-toolbar.mat-primary {
   background: #3f51b5;
@@ -39,14 +39,6 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
   content: ' ';
   display: table;
   clear: both;
-}
-
-/*.clearfix {*/
-  /*overflow: auto;*/
-/*}*/
-
-div {
-  display: block;
 }
 
 a {

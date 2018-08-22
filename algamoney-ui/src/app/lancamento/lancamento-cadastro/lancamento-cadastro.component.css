@@ -27,7 +27,7 @@
   margin-right: 2%;
 }
 
-.btn-novo {
+.btn-voltar {
   background-color: #b0bec5;
   color: #000000;
   margin-right: 2%;
@@ -72,3 +72,14 @@
 .col-medium {
   grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
 }
+
+.container-obs {
+  width: 48%;
+}
+
+@media screen and (max-width: 647px) {
+  .container-obs {
+    width: 100%;
+  }
+}
+

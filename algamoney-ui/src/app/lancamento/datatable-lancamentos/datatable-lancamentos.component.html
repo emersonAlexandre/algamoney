@@ -1,47 +1,7 @@
-<div class="container-body">
-  <div>
-    <h1>LANÇAMENTOS</h1>
-  </div>
-  <div>
-    <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Descrição" aria-label="Number" matInput [formControl]="myControl"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-  </div>
-  <div>
-    <label>Vencimento:</label>
-  </div>
-  <div class="clearfix">
-    <div class="container-dates float-left">
-      <app-datepicker></app-datepicker>
-      <label class="label-paddings">Até</label>
-      <app-datepicker></app-datepicker>
-    </div>
-  </div>
-  <div class="clearfix container-btns">
-    <div class="float-left">
-      <button class="btn-search" mat-button matTooltip="Pesquisar lançamento" [matTooltipPosition]="'after'">
-        <mat-icon>search</mat-icon>
-        Pesquisar
-      </button>
-    </div>
-    <div class="float-right">
-      <button class="btn-new float-right" mat-button matTooltip="Cadastrar lançamento" [matTooltipPosition]="'before'"
-              routerLink="/lancamento-cadastro">
-        <mat-icon>add</mat-icon>
-        Novo
-      </button>
-    </div>
-  </div>
+<div class="row col">
 
-  <div class=".example-container mat-elevation-z8">
+  <div class="grid-item mat-elevation-z8">
+
     <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements" (resize)="true">
 
       <ng-container matColumnDef="pessoa">
@@ -90,11 +50,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator #paginator
-                   [length]="dataSource.data.length"
-                   [pageIndex]="0"
+    <mat-paginator [length]="dataSource.data.length"
                    [pageSize]="10">
     </mat-paginator>
 
   </div>
+
 </div>
