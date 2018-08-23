@@ -7,7 +7,7 @@
           <mat-form-field>
             <input matInput #nome="ngModel" mask="S*" name="nome" required ngModel>
           </mat-form-field>
-          <!--<app-message [control]="nome" [error]="'required'" [text]="'Nome é requerido'"></app-message>-->
+          <app-message [control]="nome" [error]="'required'" [text]="'Nome é requerido'"></app-message>
         </div>
       </div>
       <div class="row col">
@@ -16,14 +16,14 @@
           <mat-form-field >
             <input matInput #logradouro="ngModel" name="logradouro" required ngModel>
           </mat-form-field>
-          <!--<app-message [control]="logradouro" [error]="'required'" [text]="'Logradouro é requerido'"></app-message>-->
+          <app-message [control]="logradouro" [error]="'required'" [text]="'Logradouro é requerido'"></app-message>
         </div>
         <div class="grid-item">
           <label class="{{numero.hasError('required') && numero.touched ? 'label-error' : 'label'}}">Número:</label>
           <mat-form-field >
             <input matInput  #numero="ngModel" mask="0*" name="numero" required ngModel>
           </mat-form-field>
-          <!--<app-message [control]="numero" [error]="'required'" [text]="'Número é requerido'"></app-message>-->
+          <app-message [control]="numero" [error]="'required'" [text]="'Número é requerido'"></app-message>
         </div>
       </div>
 
@@ -39,15 +39,15 @@
           <mat-form-field >
             <input matInput #bairro="ngModel" name="bairro" required ngModel onfocus="">
           </mat-form-field>
-          <!--<app-message [control]="bairro" [error]="'required'" [text]="'Bairro é requerido'"></app-message>-->
+          <app-message [control]="bairro" [error]="'required'" [text]="'Bairro é requerido'"></app-message>
         </div>
         <div class="grid-item">
           <label class="{{(cep.hasError('required') || cep.hasError('minlength')) && cep.touched ? 'label-error' : 'label'}}">Cep:</label>
           <mat-form-field >
             <input matInput #cep="ngModel" required name="cep" mask="00000-000" minlength="8" ngModel>
           </mat-form-field>
-          <!--<app-message [control]="cep" [error]="'required'" [text]="'Cep é requerido'"></app-message>-->
-          <!--<app-message [control]="cep" [error]="'minlength'" [text]="'Informe o cep corretamente'"></app-message>-->
+          <app-message [control]="cep" [error]="'required'" [text]="'Cep é requerido'"></app-message>
+          <app-message [control]="cep" [error]="'minlength'" [text]="'Informe o cep corretamente'"></app-message>
         </div>
       </div>
 
