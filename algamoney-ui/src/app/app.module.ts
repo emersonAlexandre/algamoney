@@ -3,23 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import {
-  MatToolbarModule,
-  MatButtonModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule,
-  MatGridListModule
-} from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { LancamentosPageComponent } from './lancamento/lancamentos-page/lancamentos-page.component';
 import { PessoasPageComponent } from './pessoa/pessoas-page/pessoas-page.component';
 import { LancamentoCadastroComponent } from './lancamento/lancamento-cadastro/lancamento-cadastro.component';
 import { PessoaCadastroComponent } from './pessoa/pessoa-cadastro/pessoa-cadastro.component';
-import {LancamentoModule} from './lancamento/lancamento.module';
-import {PessoaModule} from './pessoa/pessoa.module';
+import { LancamentoModule } from './lancamento/lancamento.module';
+import { PessoaModule } from './pessoa/pessoa.module';
+import { CoreModule } from './core/core.module';
+import {HttpClientModule} from '@angular/common/http';
+import {LancamentoService} from './lancamento/lancamento.service';
 
 const appRoutes: Routes = [
   {path: 'lancamentos-page', component: LancamentosPageComponent},
@@ -30,24 +24,19 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MyNavComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
+    CoreModule,
     LancamentoModule,
-    PessoaModule
+    PessoaModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -13,6 +13,6 @@ import {MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateMo
     MatInputModule
   ],
   declarations: [MessageComponent, DatepickerComponent],
-  exports: [MessageComponent, DatepickerComponent]
+  exports: [MessageComponent, DatepickerComponent, MatDatepickerModule, MatNativeDateModule]
 })
 export class SharedModule { }
