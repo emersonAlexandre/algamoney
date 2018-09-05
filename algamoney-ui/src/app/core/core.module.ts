@@ -12,6 +12,7 @@ import {MyNavComponent} from './my-nav/my-nav.component';
     MatIconModule,
     MatListModule,
     MatGridListModule
+
   ],
   declarations: [MyNavComponent],
   exports: [MyNavComponent]

@@ -16,6 +16,7 @@ export class LancamentosPageComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   displayedColumns = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acoes'];
   dataSource = new MatTableDataSource();
+  descricao: string;
 
   constructor(private lancamentoService: LancamentoService) {}
   ngOnInit() {
@@ -28,7 +29,7 @@ export class LancamentosPageComponent implements OnInit {
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar()
+    this.lancamentoService.pesquisar({descricao: this.descricao})
       .then(dados => {
         this.dataSource.data = dados;
         this.options = dados.map(value => value.descricao);

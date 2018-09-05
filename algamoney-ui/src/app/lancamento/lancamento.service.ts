@@ -1,22 +1,34 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+
+
+export interface  LancamentoFiltro {
+  descricao: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LancamentoService {
 
   lancamentosUrl = 'http://localhost:8080/lancamentos';
+  params = new HttpParams();
 
   constructor(private http: HttpClient) {
   }
 
-  pesquisar(): Promise<any> {
+  pesquisar(filtro: LancamentoFiltro): Promise<any> {
     const headers = new HttpHeaders(
       {'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='}
     );
-    return this.http.get(`${this.lancamentosUrl}?resumo`, {headers})
+
+    if (filtro.descricao) {
+      this.params = this.params.set('descricao', filtro.descricao);
+    }
+
+    return this.http.get(`${this.lancamentosUrl}?resumo`, {headers, params: this.params})
       .toPromise()
-      .then(response => response.content);
+      .then((response: any) => response.content);
   }
 }
