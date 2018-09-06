@@ -25,11 +25,11 @@ export class LancamentosPageComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   displayedColumns = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acoes'];
   dataSource = new MatTableDataSource();
-  descricao: string;
-  dataVencimentoInicio: Date;
-  dataVencimentoFim: Date;
+  filtro = new LancamentoFiltro();
+  totalRegistros = 0;
 
   constructor(private lancamentoService: LancamentoService) {}
+
   ngOnInit() {
     this.pesquisar();
     this.filteredOptions = this.myControl.valueChanges
@@ -39,16 +39,13 @@ export class LancamentosPageComponent implements OnInit {
       );
   }
 
-  pesquisar() {
-    const filtro: LancamentoFiltro = {
-      descricao: this.descricao,
-      dataVencimentoInicio: this.dataVencimentoInicio,
-      dataVencimentoFim: this.dataVencimentoFim
-    };
-    this.lancamentoService.pesquisar(filtro)
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+    this.lancamentoService.pesquisar(this.filtro)
       .then(dados => {
-        this.dataSource.data = dados;
-        this.options = dados.map(value => value.descricao);
+        this.totalRegistros = dados.total;
+        this.dataSource.data = dados.lancamentos;
+        this.options = dados.lancamentos.map(value => value.descricao);
       });
   }
 

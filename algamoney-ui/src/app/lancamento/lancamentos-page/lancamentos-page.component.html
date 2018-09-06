@@ -10,7 +10,7 @@
             <label>Descrição:</label>
             <mat-form-field>
               <input type="text" aria-label="Number" matInput [formControl]="myControl"
-                     [matAutocomplete]="auto" name="descricao" [(ngModel)]="descricao">
+                     [matAutocomplete]="auto" name="descricao" [(ngModel)]="filtro.descricao">
               <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                   {{option}}
@@ -25,7 +25,7 @@
       <div class="grid-item">
         <label>Vencimento:</label>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker1" name="vencimentoInicio" [(ngModel)]="dataVencimentoInicio">
+          <input matInput [matDatepicker]="picker1" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -35,7 +35,7 @@
       </div>
       <div class="grid-item date-ate">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" name="vencimentoFim" [(ngModel)]="dataVencimentoFim">
+          <input matInput [matDatepicker]="picker2" name="vencimentoFim" [(ngModel)]="filtro.dataVencimentoFim">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
