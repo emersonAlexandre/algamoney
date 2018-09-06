@@ -2,13 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {MatTableDataSource} from '@angular/material';
-import {LancamentoService} from '../lancamento.service';
+import {DateAdapter, MAT_DATE_FORMATS, MatTableDataSource} from '@angular/material';
+import {LancamentoFiltro, LancamentoService} from '../lancamento.service';
+import {APP_DATE_FORMATS, AppDateAdapter} from './data.adapter';
 
 @Component({
   selector: 'app-lancamentos-page',
   templateUrl: './lancamentos-page.component.html',
-  styleUrls: ['./lancamentos-page.component.css']
+  styleUrls: ['./lancamentos-page.component.css'],
+  providers: [
+    {
+      provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+      provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }
+  ]
 })
 export class LancamentosPageComponent implements OnInit {
   myControl = new FormControl();
@@ -17,6 +26,8 @@ export class LancamentosPageComponent implements OnInit {
   displayedColumns = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acoes'];
   dataSource = new MatTableDataSource();
   descricao: string;
+  dataVencimentoInicio: Date;
+  dataVencimentoFim: Date;
 
   constructor(private lancamentoService: LancamentoService) {}
   ngOnInit() {
@@ -29,7 +40,12 @@ export class LancamentosPageComponent implements OnInit {
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar({descricao: this.descricao})
+    const filtro: LancamentoFiltro = {
+      descricao: this.descricao,
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    };
+    this.lancamentoService.pesquisar(filtro)
       .then(dados => {
         this.dataSource.data = dados;
         this.options = dados.map(value => value.descricao);

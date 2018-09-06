@@ -8,6 +8,11 @@ td.mat-cell:last-child, td.mat-footer-cell:last-child, th.mat-header-cell:last-c
   width: 10%;
 }
 
+th.mat-header-cell.empty {
+  text-align: center;
+  font-size: 15px;
+}
+
 .col-acoes {
   width: 70%;
 }

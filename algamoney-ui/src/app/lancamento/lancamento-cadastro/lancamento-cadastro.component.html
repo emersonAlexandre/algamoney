@@ -9,11 +9,19 @@
     <div class="row col-small">
       <div class="grid-item">
         <label>Vencimento:</label>
-        <app-datepicker></app-datepicker>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" name="vencimento">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
       </div>
       <div class="grid-item">
         <label>{{tipo === 'DESPESA' ? 'Pagamento' : 'Recebimento'}}:</label>
-        <app-datepicker></app-datepicker>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" name="{{tipo === 'DESPESA' ? 'pagamento' : 'recebimento'}}">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
       </div>
     </div>
     <div class="row col">

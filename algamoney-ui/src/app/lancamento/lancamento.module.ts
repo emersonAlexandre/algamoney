@@ -32,12 +32,14 @@ import {SharedModule} from '../shared/shared.module';
     MatSelectModule,
     MatButtonToggleModule,
     CurrencyMaskModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot(),
     SharedModule,
     MatTableModule,
     MatPaginatorModule
   ],
   declarations: [LancamentosPageComponent, LancamentoCadastroComponent, DatatableLancamentosComponent],
-  exports: [LancamentosPageComponent, LancamentoCadastroComponent]
+  exports: [LancamentosPageComponent, LancamentoCadastroComponent, MatDatepickerModule, MatNativeDateModule]
 })
 export class LancamentoModule { }
