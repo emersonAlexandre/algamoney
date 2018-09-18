@@ -16,7 +16,6 @@ import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {NgxMaskModule} from 'ngx-mask';
 import {PessoaCadastroComponent} from './pessoa-cadastro/pessoa-cadastro.component';
 import {PessoasPageComponent} from './pessoas-page/pessoas-page.component';
-import {DatatablePessoasComponent} from './datatable-pessoas/datatable-pessoas.component';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -39,7 +38,7 @@ import {SharedModule} from '../shared/shared.module';
     MatTableModule,
     MatPaginatorModule
   ],
-  declarations: [PessoaCadastroComponent, PessoasPageComponent, DatatablePessoasComponent],
+  declarations: [PessoaCadastroComponent, PessoasPageComponent],
   exports: [PessoaCadastroComponent, PessoasPageComponent]
 })
 export class PessoaModule {

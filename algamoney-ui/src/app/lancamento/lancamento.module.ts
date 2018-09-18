@@ -14,7 +14,6 @@ import {CurrencyMaskModule} from 'ng2-currency-mask';
 import {NgxMaskModule} from 'ngx-mask';
 import {LancamentosPageComponent} from './lancamentos-page/lancamentos-page.component';
 import {LancamentoCadastroComponent} from './lancamento-cadastro/lancamento-cadastro.component';
-import {DatatableLancamentosComponent} from './datatable-lancamentos/datatable-lancamentos.component';
 import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
@@ -39,7 +38,7 @@ import {SharedModule} from '../shared/shared.module';
     MatTableModule,
     MatPaginatorModule
   ],
-  declarations: [LancamentosPageComponent, LancamentoCadastroComponent, DatatableLancamentosComponent],
+  declarations: [LancamentosPageComponent, LancamentoCadastroComponent],
   exports: [LancamentosPageComponent, LancamentoCadastroComponent, MatDatepickerModule, MatNativeDateModule]
 })
 export class LancamentoModule { }

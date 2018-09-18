@@ -1,44 +1,46 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
-export interface Pessoa {
-  nome: string;
-  cidade: string;
-  estado: string;
-  ativo: boolean;
-}
-
-// TODO: replace this with real data from your application
-const ELEMENT_DATA: Pessoa[] = [
-  { nome: 'Manoel Pinheiro', cidade: 'Uberlândia', estado: 'MG', ativo: true },
-  { nome: 'Sebastião da Silva', cidade: 'São Paulo', estado: 'SP', ativo: false },
-  { nome: 'Carla Souza', cidade: 'Florianópolis', estado: 'SC', ativo: true },
-  { nome: 'Luís Pereira', cidade: 'Curitiba', estado: 'PR', ativo: true },
-  { nome: 'Vilmar Andrade', cidade: 'Rio de Janeiro', estado: 'RJ', ativo: false },
-  { nome: 'Paula Maria', cidade: 'Uberlândia', estado: 'MG', ativo: true }
-];
+import {PessoaFiltro, PessoaService} from '../pessoa.service';
 
 @Component({
   selector: 'app-pessoas-page',
   templateUrl: './pessoas-page.component.html',
   styleUrls: ['./pessoas-page.component.css']
 })
+
 export class PessoasPageComponent implements OnInit {
-  dataSource = new MatTableDataSource<Pessoa>(ELEMENT_DATA);
-  myControl = new FormControl();
-  options: string[] = ['Manoel Pinheiro', 'Sebastião da Silva', 'Carla Souza', 'Luís Pereira', 'Vilmar Andrade'];
-  filteredOptions: Observable<string[]>;
   displayedColumns = ['nome', 'cidade', 'estado', 'ativo', 'acoes'];
+  myControl = new FormControl();
+  filtro = new PessoaFiltro();
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
+  dataSource = new MatTableDataSource();
+  totalRegistros = 0;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private pessoaService: PessoaService) {}
 
   ngOnInit() {
+    this.pesquisar();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
+    this.dataSource.paginator = this.paginator;
+  }
+
+  pesquisar() {
+    this.pessoaService.pesquisar(this.filtro)
+      .then(dados => {
+        this.totalRegistros = dados.total;
+        this.dataSource.data = dados.pessoas;
+        this.options = dados.pessoas.map(value => value.nome);
+      });
   }
 
   private _filter(value: string): string[] {
