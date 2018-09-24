@@ -61,7 +61,7 @@
 
     <div class="grid-item mat-elevation-z8">
 
-      <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+      <table mat-table #table [dataSource]="dataSource" matSort aria-label="Elements" #tabela>
 
         <ng-container matColumnDef="pessoa">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Pessoa</th>
@@ -99,7 +99,7 @@
                 <mat-icon>edit</mat-icon>
               </a>
               <a mat-mini-fab routerLink="#" class="float-right" matTooltip="Deletar lançamento"
-                 [matTooltipPosition]="'above'">
+                 [matTooltipPosition]="'above'" (click)="excluir(row)">
                 <mat-icon class="icon-close">close</mat-icon>
               </a>
             </div>

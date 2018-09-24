@@ -16,13 +16,13 @@ export class LancamentoService {
 
   lancamentosUrl = 'http://localhost:8080/lancamentos';
   params = new HttpParams();
+  headers = new HttpHeaders(
+    {'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='}
+  );
 
   constructor(private http: HttpClient) {}
 
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
-    const headers = new HttpHeaders(
-      {'Authorization': 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='}
-    );
 
     if (filtro.descricao) {
       this.params = this.params.set('descricao', filtro.descricao);
@@ -36,7 +36,7 @@ export class LancamentoService {
       this.params = this.params.set('dataVencimentoAte', moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
     }
 
-    return this.http.get(`${this.lancamentosUrl}?resumo`, {headers, params: this.params})
+    return this.http.get(`${this.lancamentosUrl}?resumo`, {headers: this.headers, params: this.params})
       .toPromise()
       .then((response: any) => {
         const resultado = {
@@ -46,5 +46,11 @@ export class LancamentoService {
 
         return resultado;
       });
+  }
+
+  excluir(codigo: number): Promise<void> {
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, {headers: this.headers})
+      .toPromise()
+      .then(() => null);
   }
 }

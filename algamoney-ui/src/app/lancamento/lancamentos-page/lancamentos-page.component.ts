@@ -28,6 +28,7 @@ export class LancamentosPageComponent implements OnInit {
   displayedColumns = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acoes'];
   dataSource = new MatTableDataSource();
   totalRegistros = 0;
+  @ViewChild('tabela') tabela;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -58,4 +59,10 @@ export class LancamentosPageComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+  excluir(lancamento: any) {
+    this.lancamentoService.excluir(lancamento.codigo)
+      .then(() => {
+        this.pesquisar();
+      });
+  }
 }
