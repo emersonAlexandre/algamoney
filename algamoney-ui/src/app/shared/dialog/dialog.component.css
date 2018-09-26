@@ -1,0 +1,17 @@
+.mat-dialog-actions {
+  margin-top: 25px;
+}
+
+mat-icon {
+  float: right;
+  color: darkorange;
+}
+
+.material-icons {
+  font-size: 27px;
+}
+
+h2 {
+  color: tomato;
+  margin-bottom: 25px;
+}

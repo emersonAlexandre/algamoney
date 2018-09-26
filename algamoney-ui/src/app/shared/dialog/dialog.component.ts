@@ -1,5 +1,10 @@
-import {MatDialog, MatDialogConfig} from '@angular/material';
-import {Component} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, Inject} from '@angular/core';
+
+export interface DialogData {
+  item: string;
+  accept: any;
+}
 
 @Component({
   selector: 'app-dialog',
@@ -9,15 +14,16 @@ import {Component} from '@angular/core';
 
 export class DialogComponent {
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-  openDialog() {
+  confirm() {
+    this.data.accept();
+    this.dialogRef.close();
+  }
 
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    this.dialog.open(LancamentoCadastroComponent, dialogConfig);
+  close() {
+    this.dialogRef.close();
   }
 }

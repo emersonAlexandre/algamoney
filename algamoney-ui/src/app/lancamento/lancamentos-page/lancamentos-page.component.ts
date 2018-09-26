@@ -2,9 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {DateAdapter, MAT_DATE_FORMATS, MatPaginator, MatTableDataSource} from '@angular/material';
+import {DateAdapter, MAT_DATE_FORMATS, MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
 import {LancamentoFiltro, LancamentoService} from '../lancamento.service';
 import {APP_DATE_FORMATS, AppDateAdapter} from './data.adapter';
+import {DialogComponent} from '../../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-lancamentos-page',
@@ -28,11 +29,12 @@ export class LancamentosPageComponent implements OnInit {
   displayedColumns = ['pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'acoes'];
   dataSource = new MatTableDataSource();
   totalRegistros = 0;
+
   @ViewChild('tabela') tabela;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private lancamentoService: LancamentoService) {}
+  constructor(private lancamentoService: LancamentoService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.pesquisar();
@@ -59,10 +61,29 @@ export class LancamentosPageComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+  openDialog(lancamento: any) {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: 'auto',
+      data: {
+        item: 'lançamento',
+        accept: () => {
+          this.excluir(lancamento);
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+
+  }
+
   excluir(lancamento: any) {
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         this.pesquisar();
       });
   }
+
+
 }
