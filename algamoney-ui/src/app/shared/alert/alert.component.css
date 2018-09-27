@@ -1,0 +1,24 @@
+.alert-message {
+  margin-left: 40px;
+  margin-top: 7px;
+}
+
+.mat-icon-success {
+  color: green;
+}
+
+.mat-icon-error {
+  color: red;
+}
+
+.mat-icon-warning {
+  color: orange;
+}
+
+.mat-icon-info {
+  color: blue;
+}
+
+.alert-icon {
+  font-size: 30px;
+}

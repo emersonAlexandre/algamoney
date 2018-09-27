@@ -100,3 +100,8 @@ a:hover, a:focus {
 .grid-item {
   text-align: left;
 }
+
+.mat-snack-bar-container {
+  background: #464646 !important;
+  color: #fff !important;
+}

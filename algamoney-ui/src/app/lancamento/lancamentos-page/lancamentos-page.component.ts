@@ -2,10 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {DateAdapter, MAT_DATE_FORMATS, MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
+import {DateAdapter, MAT_DATE_FORMATS, MatDialog, MatPaginator, MatSnackBar, MatTableDataSource} from '@angular/material';
 import {LancamentoFiltro, LancamentoService} from '../lancamento.service';
 import {APP_DATE_FORMATS, AppDateAdapter} from './data.adapter';
 import {DialogComponent} from '../../shared/dialog/dialog.component';
+import {AlertComponent} from '../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-lancamentos-page',
@@ -34,7 +35,7 @@ export class LancamentosPageComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private lancamentoService: LancamentoService, public dialog: MatDialog) {}
+  constructor(private lancamentoService: LancamentoService, private dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.pesquisar();
@@ -73,9 +74,15 @@ export class LancamentosPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+      this.openSnackBar();
     });
 
+  }
+
+  openSnackBar() {
+    this.snackBar.openFromComponent(AlertComponent, {
+      duration: 3000, data: {message: 'Lançamento excluído com sucesso', type: 'success'}
+    });
   }
 
   excluir(lancamento: any) {
@@ -84,6 +91,4 @@ export class LancamentosPageComponent implements OnInit {
         this.pesquisar();
       });
   }
-
-
 }
